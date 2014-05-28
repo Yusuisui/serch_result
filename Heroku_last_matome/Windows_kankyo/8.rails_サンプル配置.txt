@@ -1,0 +1,23 @@
+【Rails サンプル配置】
+2014/05/23　作成者：宇野
+
+参照資料
+http://www.buildinsider.net/web/rubyonrails4/0102
+*****************************************
+1.サンプルのダウンロード
+　URL:http://www.wings.msn.to/index.php/-/A-07/978-4-7741-6410-6/
+
+2.展開する
+
+3.「sample」の中の「railbook」を
+　c:\data に設置する
+
+4.
+ > cd c:\data\railbook
+ > bundle install
+
+　を実行する
+
+5.サンプルにアクセスが可能になる
+
+****************************************

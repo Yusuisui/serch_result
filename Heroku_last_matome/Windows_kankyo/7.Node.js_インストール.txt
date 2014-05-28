@@ -1,0 +1,25 @@
+【Node.js インストール】
+2014/05/23　作成者：宇野
+
+****************************************
+1.Node.js のダウンロード
+　URL:http://nodejs.org/download/
+  node-v0.10.28-x64.msi
+　※Windows Installer(.msi) 64-bit を選択
+
+2.Node.js のインストール
+　・node-v0.10.28-x64.msi　の実行
+　・「Next」
+　・「I accept the terms in the License Agreement」にチェック→「Next」
+　・「C:\Program File\nodejs」を選択し，「Next」
+　・「Next」
+　・「Install」
+　・「Finish」
+
+3.確認(コマンドプロンプト再起動)
+ > node -v
+   
+   v0.10.28
+
+
+****************************************

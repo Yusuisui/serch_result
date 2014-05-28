@@ -1,0 +1,122 @@
+【rails アプリ作成】
+2014/05/23　作成者：宇野
+
+参考資料
+
+http://www.buildinsider.net/web/rubyonrails4/0201
+***********************************
+1.Gem関連
+ > gem list を使用して，ないものを確認する
+   ※どれが何であるかは理解していない…エラーメッセージに出てきたものをとりあえずインストールしてみた
+
+ 
+ ex)
+ > gem install bundler
+ > gem install rspec
+ > gem install json
+ > gem install rake
+ > gem install ruby-debug-ide
+ > gem install pkg-config
+ > gem install rspec-rails
+ > gem update　--system 
+ > gem update
+
+2.therubyracer
+下記のコマンドで任意のフォルダにcloneする
+ > git clone https://github.com/hiranpeiris/therubyracer_for_windows.git
+ 
+ フォルダ内の
+　・v8.dll
+　・v8preparser.dll の2つを
+ > cp c:\Ruby200\bin にコピーしておく
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1.アプリの作成
+ > cd c:\data
+ >rails new railbook
+
+2.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+*****************************************
+2.HTTPサーバーを起動
+ > rails server
+   エラー…なぜ？
+
+
+
+
+
+3.解決策は？
+ a.1.gem install tzinfo-data
+   2.rails server 変わらず
+
+ b.1.gem update
+   2.Gemfile書き換え
+　　　+gem 'execjp'
+      +gem 'therubyracer'
+   3.rails server 変わらず
+
+ c.
+   4.Gemfile 編集
+　　　　gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
+   5.bundle install
+   6.gem install libv8 -v '3.16.14.3' エラー
+　 7.bundle update
+   8.
+
+**************************************
+仕切り直し
+
+1.アプリの作成
+ > cd c:\data
+ >rails new unouno
+
+
+
+3.Gemfaile　編集
+ + gem 'therubyracer'
+ + gem 'execjp'
+ + gem 'tzinfo-data', group: :development
+ - gem 'jquery-rails'
+
+
+

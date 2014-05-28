@@ -1,0 +1,38 @@
+【Devkitのインストール】
+2014/05/23　作成者：宇野
+
+***********************************
+1.Devkitのダウンロード
+　URL:http://rubyinstaller.org/downloads/
+　DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exe
+  ※PCの環境にあったものを選択する
+
+2.Devkitのインストール
+　インストール場所
+　c:\devkit
+
+3.PATHの設定？
+  c:\devkit\bin
+  c:\devkit\mingw\bin
+  を追加
+
+4.コマンドプロンプトより
+　展開した devkit フォルダに移動
+　c:\devkit>ruby dk.rb init を実行
+  [INFO] found RubyInstaller v2.0.0 at C:/Ruby200
+
+
+5.devkit下に生成された config.yml の編集
+　・15行目にrubyのルートディレクトリを入力
+　　ex) -C:/Ruby200
+   ※4.のコマンドで記述されていた場合は不要
+
+6.コマンドプロンプト
+　c:\devkit>ruby dk.rb install　を実行し，
+
+　[INFO] Updating convenience notice gem override for 'C:/Ruby200-x64'
+　[INFO] Installing 'C:/Ruby200-x64/lib/ruby/site_ruby/devkit.rb'
+
+　と出力されていれば完了.
+
+************************************

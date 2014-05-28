@@ -1,0 +1,20 @@
+【rails のインストール】
+2014/05/23 作成者：宇野
+
+***************************************
+1.コマンドプロンプト
+  c:\ruby\devkit>gem install rails --no-ri --no-rdoc を実行
+
+2.確認
+ > rails -v
+ 
+ DL is deprecated, please use Fiddle
+ Rails 4.1.1
+
+*****************************************
+【問題点】
+　・DL is deprecated, please use Fiddleとは？
+ 　webを見る限りでは，今のところ問題はないらしいので･･･(後回しに)
+
+
+
