@@ -1,0 +1,35 @@
+【Herokuコマンド】
+2014/05/27　作成者：宇野
+
+*******************************
+参考資料
+http://d.hatena.ne.jp/xyk/20101102
+
+*******************************
+ > heroku help
+ ヘルプ表示
+
+ > heroku version
+ バージョン表示
+　
+ > heroku login
+ herokuにログイン
+
+ > heroku list
+ アプリケーションの一覧
+
+ > heorku create <アプリ名>
+ herokuに新しいアプリを作成
+
+ > heroku info
+ このアプリケーションの情報を表示
+
+ > heorku open
+ このアプリケーションをブラウザで開く
+
+ > heroku rename <アプリ名>
+ このアプリケーションの名前を<アプリ名>に変更する
+
+ > heroku config
+ 定義した環境変数を表示
+ 

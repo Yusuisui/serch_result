@@ -1,0 +1,33 @@
+【gitコマンド】
+2014/05/26　作成者：宇野
+
+********************************
+【gitの設定】
+ > git config --global user.name "username"
+ > git config --global user.email "email"
+ > git config --global ui.color auto
+
+
+
+
+【.gitの作成】
+ > git init
+
+【git に追加】
+ > git add -A
+ ※-A 全てを追加する
+
+【コミット】
+ > git commit -m "コメント"
+
+【リモートリポジトリの確認】
+ > git remote -v
+
+【リモートリポジトリの追加】
+ > git remote add <リモートリポジトリ名> <リポジトリ先>
+
+【リモートリポジトリの削除】
+ > git remote rm <リモートリポジトリ名>
+
+【gitの設定】
+
