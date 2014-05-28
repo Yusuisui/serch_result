@@ -1,0 +1,100 @@
+【ubuntu_ruby_rails_rvm 環境構築】
+2014/05/22　作成者：宇野
+
+ruby 2.1.2p95(2014-05-08 revision 45877) [x86_64-Linux]
+Rails 4.1.1
+rvm 1.25.26(stable)
+gem 2.2.2
+
+-------------------------------------------------
+1.事前準備を行う.
+　$ sudo apt-get update
+  $ sudo apt-get upgrade
+
+2.curlのインストールを行う
+　$ sudo apt-get install curl
+
+3.$ curl -L https://get.rvm.io | bash -s stable
+
+4.$ source ~/.rvm/scripts/rvm
+
+5.$ sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config
+
+
+6.sudo apu-get install git
+  $ git version
+  git version 1.9.1
+ 
+
+7.$ rvm install ruby-2.1.2
+  ※結構時間がかかる･･･
+
+8.$ rvm use 2.1.2
+  
+  ※
+  $ rvm list でどのバージョンが入っているかを確認できる.
+　複数のrubyが入っていた場合は
+　$ rvm use バージョン指定
+　もしくは
+　$ rvm use バージョン指定 --default
+　でデフォルトになる.
+
+
+
+？？？？
+------------------------
+【必要なかったコマンド】
+RubyGemsをインストール
+  $ rvm rubygems current
+  バージョンの確認方法
+　$ gem -v
+-------------------------------------------------
+エラーが出た場合は適宜エラーに書いてあるコマンドなどで
+対応するか，webの資料を参考にしながら作業を進めた.
+
+
+****************************
+【Web資料より】
+http://www.kkaneko.com/rinkou/ruby/rubyrvmlinux.html
+
+事前準備
+1.パッケージの更新
+ $ sudo spt-get update
+ $ sudo apt-get upgrade
+
+2.curlのインストール
+ $ sudo apt-get install curl
+
+3.Ruby処理系のインストールに必要なパッケージのインストール
+ $ ssudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-0 libsqlite3-dev sqlite libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion
+
+4.rvmのインストール
+ $ curl -L https://get.rvm.io | bash -s stable 
+ $ source ~/.rvm/scripts/rvm 【必要？】
+
+
+5.rvmを最新バージョンに更新
+ $ rvm get head
+ $ rvm reload
+
+6.名前リストの表示
+ $ rvm list known
+
+7.使用可能なコマンドの表示
+ $ rvm help
+
+8.ruby のインストール操作
+ $ rvm install ruby-x.x.x-xxx
+
+9.RubyGemsの更新
+ $ gem install rubygems-update
+
+10.
+ $ sudo gem install rspec
+ $ sudo gem install rspec-rails
+ $ sudo gem install git
+
+11.確認
+ $ gem list
+
+

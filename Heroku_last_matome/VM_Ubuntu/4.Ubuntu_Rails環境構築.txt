@@ -1,0 +1,53 @@
+【ubuntu_rails環境構築】
+2014/05/22　作成者：宇野
+
+※環境構築後に作成のため
+抜けている部分もあるかもしれない…
+
+----------------------------------
+1.rails のインストール
+ $ sudo gem update
+ $ sudo gem install pkg-config
+ $ sudo gem install rails
+1.railsプロジェクトを作成
+ $ rails new アプリ名
+ $ cd アプリ名
+
+2.Gemfileを修正
+ 
+--------------------------
+gem 'sqlite3', :group => [:development, test]
+
+group :oriduction do
+gem 'pg'
+end
+
+---------------------------
+を追加修正
+
+3.Gitリポジトリを作成
+ $ git init
+ $ git add -A
+ $ git commit -m 'コメント'
+
+4.デプロイ
+ $ heroku create herokuのリポジトリ名
+ $ git push heroku
+
+
+5.コントローラー？の作成
+　$ rails generate controller home index
+  $ rm public/index.html
+  $ vi config/routes.rb
+  
+＃下記を追加
+　 root :to =>'home#index'
+
+　$ vi app/views/home/index.html/erb
+  ＃下記を追加
+　 <h1>Hello,Rails!</h1>
+
+5.ブラウザで確認
+ $ heroku open
+
+---------------------------

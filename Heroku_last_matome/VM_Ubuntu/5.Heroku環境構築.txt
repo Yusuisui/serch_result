@@ -1,0 +1,26 @@
+【Heroku環境構築】
+2014/05/22　作成者：宇野
+
+※環境構築後に整理した手順のため，
+抜けている部分もあるかもしれない
+
+------------------------------------
+1.Herokuアカウントの作成
+https://id.heroku.com/login
+
+2.HerokuToolbeltのインストール
+ $ wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+
+3.SSHキーの設定
+ $ ssh-keygen -t rsa -C "Herokuに登録したメールアドレス"
+
+4.Herokuログイン
+ $ heroku login
+
+5.$ heroku create アプリ名
+
+6.$ git remote add リモート名 リポジトリアドレス
+
+7.$ git push heroku リモート名　ブランチ名
+
+8.
