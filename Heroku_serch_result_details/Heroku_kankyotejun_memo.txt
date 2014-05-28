@@ -1,0 +1,345 @@
+Heroku環境構築手順_メモ
+作成者：宇野
+
+----------------------------------------
+【Heroku】
+
+1.Herokuアカウント登録
+2.heroku-toolbelt.exeをダウンロード
+3.実行
+4.インストール
+※同時にGitもインストールされる
+
+コマンドプロンプトより
+
+・heroku version 
+heroku/tpplbelt/3.7.3 (i386-mingw32) ruby/1.9.3
+
+・git version
+git version 1.8.1.msysgit.1
+
+【web参照より】
+・gem install heroku bundler
+としてインストールしていた.
+
+・gem install rake
+
+・gem install ruby-debug-idt
+
+
+
+----------------------------------------------
+
+【Ruby】
+
+1.Ruby 1.9.3-p545.exeダウンロード
+2.実行
+3.オプション指定で以下の項目を選択
+　・Rubyの実行ファイルへ環境変数PATHを設定する
+※PATH c:\Ruby193\bin\
+
+コマンドプロンプト
+・ruby -v
+ruby 1.9.3p545(2014-02-24) [i386-mingw32]
+
+-----------------------------------------------
+
+【DevKit】
+
+1.DevKit-tdm-32-4.5.2-20111229-1559-sfx.exeダウンロード
+2.実行
+3.C:\devkit\　に展開
+
+4.展開したファイルの中身を「C:Ruby193」に上書き保存
+
+
+コマンドプロンプト
+4.cd c:\Ruby193
+5.ruby dk.rb init
+6.ruby dk.rb install
+【問題発生】
+【6の手順ができなかったので】
+　1.PATHを再度確認　c:\Ruby193\bin\; を追加
+　2.管理者権限でコマンドプロンプトを起動
+　3.ruby -v 確認できた
+　4.ruby dk.rb.init 問題なし
+　5.ruby dk.rb install 問題なし完了
+【問題解決】
+
+---------------------------------------------------
+
+【gem】
+・gem -v
+1.8.28
+
+コマンドプロンプトより
+1.gem update
+【問題発生】
+以下の項目についてエラーが吐かれた
+・bigdecimal-1.2.5.gem
+・io-console-0.4.2.gem
+・json-1.8.1.gem
+　　DevKitについてのエラーのようであったため
+　　1.PATH c:\DevKit\mingw\bin;c:\DevKit\bin;　を追加
+　　2.gem update 問題なし
+    3.gem list ダウンロードされていた
+【問題解決】
+2.
+
+----------------------------------------------------
+【gem関係】
+コマンドプロンプトより
+
+・gem install rspec
+
+・gem install json
+
+・gem update　--system 
+
+・gem -v
+  ・2.2.2
+
+・gem install rake
+・gem update rake
+・gem install ruby-debug-ide
+・gem update
+・
+
+-------------------------------------------------------
+【rails】
+
+
+1.gem install pkg-config
+2.gem install rails
+3.インストールが進む…
+
+【問題発生】
+4.最後のほうでエラー
+　内容
+　ERROR:  While executing gem ... (Gem::RemoteFetcher::FetchError)
+    SSL_connect SYSCALL returned=5 errno=0 state=SSLv3 read server session ticke
+t A (https://api.rubygems.org/gems/bundler-1.6.2.gem)
+  わからない…のでweb参照し
+　・gem install rspec-railsを実行
+　その後,もう一度
+　・gem innstall rails
+ 　エラーが出なくなった！(なぜ？
+
+5.rails -v
+  Rails 4.1.1
+
+6.gem list
+ bundler (1.6.2)
+ がインストールされていた・・・・
+
+【問題解決？】
+
+------------------------------------------------------------
+【rails new ***】
+rails new ディレクトリ名　で成功するか確認する
+
+1.cd ***(任意のフォルダ)
+2.rails new uno_test
+
+【問題発生】
+エラー内容
+Gem::RemoteFetcher::FetchError: SSL_connect SYSCALL returned=5 errno=0 state=SSL
+v3 read server session ticket A (https://au-m.rubygems.org/gems/coffee-rails-4.0
+.1.gem)
+An error occurred while installing coffee-rails (4.0.1), and Bundler cannot
+continue.
+Make sure that `gem install coffee-rails -v '4.0.1'` succeeds before bundling.
+　1.rubygems-2.2.2をダウンロードしてくる
+　2.展開し, c:\Ruby193\　に入れる
+　3.cd c:\Ruby193\rubygems-2.2.2
+  4.ruby setup.rb
+  5.再度 rails new **** を実行してみる
+　
+****************************************************************
+****************************************************************
+【問題発生】
+エラー内容
+Gem::RemoteFetcher::FetchError: SSL_connect SYSCALL returned=5 errno=0 state=SSL
+v2/v3 read server hello A (https://rubygems.org/gems/sqlite3-1.3.9-x86-mingw32.g
+em)
+An error occurred while installing sqlite3 (1.3.9), and Bundler cannot continue.
+
+Make sure that `gem install sqlite3 -v '1.3.9'` succeeds before bundling.
+とでた…sqlite3がない？
+
+　【手法1】
+　1.gem install sqlite3 -v '1.3.9'　の実行
+　2.エラー
+
+　3.以下の2つをダウンロードしてくる
+　　・sqlite-shell-win32-x86-3080403.zip
+　　・sqlite-dll-win32-x86-3080403.zip
+　4.展開して　C:\pg\sqlite に置く
+　5.PATH　c:\pg\sqlite;
+  6.再度 gem install sqlite3 -v '1.3.9' の実行
+　7.sqlite3.h がないと...→[libsqlite3-dev]をいれるらしい…
+  8.gem install sqlite3-ruby -v 1.2.3 --platform mswin32 -p 
+　を実行するとインストールできた…
+　9.gem search --local sqlite3
+    sqlite3-ruby (1.2.3 mswin32) が見つかった
+　10.いろいろ検索してみると下記のサイトで気になる文章を見つけた
+　　https://github.com/yotsumoto/heroku-buildpack-ruby-with-sqlite3/blob/master/README_Japanese.md
+
+　　"ヘロク は SQLite3 の利用を制限している"
+　【結果→改善できず】
+　　 sqlite3-ruby 1.2.3 はインストールでき
+　　 gem list で確認できた，しかし 「sqlite3.h」は見当たらず
+
+　【手法2】
+　　・一度，「sqlite3」をアンインストールをし，再度インストールする手法
+　　・結果→インストールできず
+　
+****************************************************************
+****************************************************************
+
+
+
+---------------------------------------------------------
+【bundle】
+1.bundle install
+2.エラー
+　内容
+Don't run Bundler as root. Bundler can ask for sudo if it is needed, and
+installing your bundle as root will break this application for all non-root
+users on this machine.
+Could not locate Gemfile
+
+3.管理者権限でコマンドプロンプト起動
+4.bundle install 
+5.問題なく完了
+
+--------------------------------------------------------
+【rubygems】
+1.rubygems install rubygems-update
+2.update_rubygems
+
+--------------------------------------------------------
+【mysqlのインストール】
+sqlite3がインストールできなかったため・・・・
+
+・gem install mysql2
+
+*****************************************************************
+*****************************************************************
+【問題】
+・エラー
+
+ERROR:  Error installing mysql2:
+        ERROR: Failed to build gem native extension.
+	・
+	・
+	・
+	・
+*** extconf.rb failed ***
+Could not create Makefile due to some reason, probably lack of
+necessary libraries and/or headers.  Check the mkmf.log file for more
+details.  You may need configuration options.
+	・
+	・
+	・
+Gem files will remain installed in c:/ruby193/lib/ruby/gems/1.9.1/gems/mysql2-0.
+3.16 for inspection.
+Results logged to c:/ruby193/lib/ruby/gems/1.9.1/extensions/x86-mingw32/1.9.1/my
+sql2-0.3.16/gem_make.out
+
+*****************************************************************
+*****************************************************************
+
+
+
+------------------------------------------------------------
+【rails new ***】
+・アプリケーションの作成
+1.rails new ***
+
+
+*******************************************************
+*******************************************************
+
+【問題発生】
+
+Don't run Bundler as root. Bundler can ask for sudo if it is needed, and
+installing your bundle as root will break this application for all non-root
+users on this machine.
+・
+・
+・
+Bundler::GemspecError: Could not read gem at c:/ruby193/lib/ruby/gems/1.9.1/cach
+e/sqlite3-1.3.9-x86-mingw32.gem. It may be corrupted.
+An error occurred while installing sqlite3 (1.3.9), and Bundler cannot continue.
+
+*******************************************************
+*******************************************************
+
+----------------------------------------------------
+・WEBrickを使ったアプリケーションの起動
+1.rails server
+
+web:http://localhost:3000/
+
+2.終了　Ctrl + c 
+
+*******************************************************
+*******************************************************
+
+【問題発生】
+起動はしたが，webページが正しく表示されない
+
+
+*******************************************************
+*******************************************************
+-------------------------------------------------------
+【Heroku にアプリを作成】
+1.heroku create アプリ名
+2.
+
+
+
+【Heroku アップ】
+1.git init
+2.git add .
+3.git commit -m "コメント"
+4.git remote add heroku git@github.com:アプリ名.git
+5. git push heroku ブランチ名？
+
+*****************************************************
+*****************************************************
+
+
+【問題発生】
+6.heroku run rake db:migrate　エラー
+7.heroku run rake db:seed エラー
+8.heroku open
+9.heroku logs
+
+*****************************************************
+*****************************************************
+
+【ダウンロード(Git)】
+
+1.git clone <アドレス>
+2.できた！
+
+------------
+【Herokuからのダウンロード】
+未だ未着手
+----------------------------------------------------------
+----------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

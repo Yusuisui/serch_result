@@ -1,0 +1,53 @@
+2014/05/20　Herokuコミット調査
+作成者：宇野
+
+***************************************
+
+
+
+
+【SSHキーの設定】
+Herokuに
+・id_rsa　をあげることができた
+
+が,pushやSSH接続等は一切できていない状況．
+
+問題点のエラーは
+----------------------------------
+Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+-------------------------------------
+であり,おそらく鍵のパーミッションの問題だと考えており,現在対処中．
+
+また
+~/.ssh/config　の内容を書き換えると対処できる旨を見つけて実行した．
+のファイルの中身は
+------------------------
+Host heroku.com
+ User git
+ port 22
+ Hostname heroku.com
+ IdentityFile ~/.ssh/heroku_id_rsa
+ TCPKeepAlive yes
+ IdentitiesOnly yes
+----------------------
+という記述を追加した．
+
+しかし,エラーメッセージは変わらず…
+
+パーミッションの変更の仕方に難航している状況．
+
+
+-----------------------------------------
+Windowsのpermissionの変更の仕方がわからない…
+
+
+Linuxコマンドを使えれば
+
+chmod 600 ファイル名　のような感じに…
+
+
+
