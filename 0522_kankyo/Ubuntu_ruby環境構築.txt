@@ -1,0 +1,55 @@
+【ubuntu_ruby_rails_rvm 環境構築】
+2014/05/22　作成者：宇野
+
+※書き留めていなくて後から追加したものなので
+　怪しい部分があります.
+
+ruby 2.1.2p95(2014-05-08 revision 45877) [x86_64-Linux]
+Rails 4.1.1
+rvm 1.25.26(stable)
+gem 2.2.2
+
+-------------------------------------------------
+1.事前準備を行う.
+　$ sudo apt-get update
+  $ sudo apt-get upgrade
+
+2.curlのインストールを行う
+　$ sudo apt-get install curl
+
+3.$ curl -L https://get.rvm.io | bash -s stable
+
+4.$ source ~/.rvm/scripts/rvm
+
+5.$ sudo apt-get install build-essential openssl libreadline6 libreadline6-dev curl git-core zlib1g zlib1g-dev libssl-dev libyaml-dev libsqlite3-dev sqlite3 libxml2-dev libxslt-dev autoconf libc6-dev ncurses-dev automake libtool bison subversion pkg-config
+
+6.$ rvm install
+
+7.$ rvm version
+  エラー文章が出たので
+　そこに明記されているバージョンを指定
+　$ rvm use 2.1.2
+
+8.rvm list でどのバージョンが入っているかを確認できる.
+　複数のrubyが入っていた場合は
+　$ rvm use バージョン指定
+　もしくは
+　$ rvm use バージョン指定 --default
+　でデフォルトになる.
+
+9.RubyGemsをインストール
+  $ rvm rubygems current
+  バージョンの確認方法
+　$ gem -v
+
+
+10.Railsのインストール
+　$ gem install rails
+  ※時間がかかる
+　バージョンの確認方法
+　$ rails -v
+
+---------------------------------------------------
+エラーが出た場合は適宜エラーに書いてあるコマンドなどで
+対応するか，webの資料を参考にしながら作業を進めた.
+
