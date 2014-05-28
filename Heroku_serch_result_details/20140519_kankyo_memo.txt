@@ -1,0 +1,185 @@
+﻿2014/05/19 環境構築メモ
+作成者：宇野
+**************************************
+
+ruby 1.9.3p545(2014-02-24)[i386-mingw32]
+
+gem 2.2.2
+
+git version 1.9.2.msysgit.0
+
+Rails 3.2.13
+
+heroku/toolbelt/3.7.3 (i386-mingw32) ruby/1.9.3
+**************************************
+【アンインストール】
+・Heroku
+・Ruby
+・Git
+
+
+【インストール】
+・Heroku Toolbelt
+
+
+【git for windows インストール】
+サイトよりダウンロード
+
+git bashの起動
+
+コマンド入力　ex)
+・git config --global user.name "Mei Sei"
+・git config --global user.email "hoge@email.com"
+・git config --global color.ui auto
+・git config --global --unset i18n.logoutputencoding
+・git config --global --unset i18n.commitencoding
+・git config --global --unset svn.pathnameencoding
+
+GitGuiを起動
+SSHキーの作成
+
+
+
+****************************************
+【エラーが出たため保留】
+Herokuで使用するRubyバージョンを2.0.0に変えようとしたところエラー発生
+
+batファイルの変更
+C:\Program Files (x86)\Heroku\bin\heroku.bat」の6行目
+
+Rubyのパスが設定されている
+\Ruby200-x64\bin
+に変更して上書き
+【結論】
+あきらめてruby1.9.3を使用する
+
+****************************************
+【rubygemsのアップデート】
+※ruby1.9.3以降であれば標準でgemがインストールされている
+
+
+・gem update --system
+・gem -v
+　・2.2.2
+
+
+【ruby1.9.3にするためにdevkitも変更する】
+×【DevKit-mingw64-64-4.7.2-20130224-1432-sfx.exeのダウンロード】
+○【DevKit-tdm-32-4.5.2-20111229-1559-sfx.exe】
+・c:\devkit　に展開
+・cd c:\devkit
+・ruby dk.rb init
+・ruby dk.rb install
+
+
+
+
+
+【RDoc(Documentation from Ruby Source Files)のインストール】
+・gem install rdoc
+
+・gem update
+
+
+【railsインストール】
+環境構築にかなりハマっているので,バージョンを指定して落としてインストールを試みる
+・gem install rails --version "=3.2.13"
+
+・rails -v
+Rails 3.2.13
+
+********************************
+
+
+-------------------------------------------
+とりあえずアプリを作ってみる．
+
+パワーシェルより
+・rails new fuga --skip-test-unit --skip-bundle
+・bundle install --path vendor/bundle
+
+**********************************
+【bundlerとは】
+・Rubyのパッケージを管理するもの．
+　Gemfileというファイルにパッケージ名,バージョンを記述してgemのライブラリを管理できる．
+　また．グループ化などもでき,環境に応じてgemを管理することができる．
+
+1.初期化コマンド
+・bundle init
+→[Gemfile]のデフォルトが生成される
+# A sample Gemfile
+source "https://rubygems.org"
+
+# gem "rails"
+--------------------------
+2.インストールコマンド
+・bundle install ---path=vendor/bundle --binstubs=vendor/bin
+
+[--path]
+　指定したディレクトリへGemをインストールする．指定しない場合はrbenvのグローバルな領域へインストールされる．
+
+[--binstubs]
+　指定したディレクトリへコマンドとなるスクリプトを配置。指定しない場合はカレントに「bin」というディレクトリが出来て,それ以下にスクリプトが置かれる
+（※1　注意が必要）
+ 上記の場合、「vendor/bin」というディレクトリにスクリプトが配置されます。
+ 「bundle_bin」というディレクトリ名を指定するのも多いようですが、自分はvendor/binとしてインストールしました。
+
+[--without]
+　ここでは指定していないが、以下のようにwithooutに設定するとtest , development グループに記述したgemのインストールを除外する。　　
+・bundle install --without test development
+
+(※1)Rails4では–binstubsでデフォルトで指定されるbinディレクトリだと不都合が起きるようです。rails3までで使われていた「script」ディレクトリがなくなり、「bin」ディレクトリが代わりにできるようになったからだそうです。
+
+
+*************************************
+
+・rails server -p 3003
+でサーバに接続し,
+webで
+・http://localhost:3003/
+に接続し,「Welcome aboard」と表示されれば成功
+
+・Ctrl + c　で戻る
+環境構築の完了？！
+
+http://dqn.sakusakutto.jp/2012/03/rails32blog.html
+
+--------------------------------------------
+【Heroku ログイン】
+・heroku login
+・herokuアカウントのメールアドレスの入力
+・herokuアカウントのパスワードの入力
+
+【heroku にリポジトリの作成】
+・heroku create リポジトリ名
+※英語と数字のみ？
+
+【Heroku　サイト】
+Apps > Settings > Domains が本番URL
+Apps > Settings > Info にあるGitURLがリポジトリの場所
+
+gitリポジトリをローカルにクローン
+・git clone git@heroku.com:<アプリ名>.git
+
+
+【SSHキー作成】
+・ssh-keygen -t rsa -C "Herokuアカウントメールアドレス"
+・鍵の名前と場所の指定
+・パスワード【enterキー】
+・パスワード(再度)【enterキー】
+
+【Heroku　SSHキー】
+登録
+・heroku keys:add
+自動で登録してくれる
+※選択方法は？
+
+削除
+・heroku keys:clear
+
+
+------------------------------------------------
+
+
+
+
