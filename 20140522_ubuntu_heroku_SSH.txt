@@ -1,0 +1,98 @@
+2014/05/22 Ubuntu Heroku SSH接続
+作成者：宇野
+作業用メモ
+
+*************************************
+【rails 手順】
+
+
+
+【問題発生】
+ $ heroku open できない…
+　解決策1
+　1.　アプリ名/public/にindex.html を作ってみる
+　結果できない
+
+　解決策2
+　コントローラー？の作成
+　1. $ rails generate controller home index
+  2. $ rm public/index.html
+  3. $ vi config/routes.rb
+     　　＃下記を追加
+　　　　 root :to =>'home#index'
+
+　4. $ vi app/views/home/index.html/erb
+      　 ＃下記を追加
+　　　　 <h1>Hello,Rails!</h1>
+
+
+  
+
+
+
+************************************
+
+【メモ書き】
+
+-----------------------------------------
+
+vi Gemfile　で途中で保存せずに終わると
+ .Gemfile.swp　が作成される．
+次に　vi Gemfile を行うとメッセージが出るのでそれに従い対処する
+
+-----------------------------------------
+rvm PATH 設定
+
+.bash_profile
+
+【変更前】
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a sell session *as a function*
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+【変更後】
+
+
+
+
+【環境変数＄PATHの重複項目を削除する】
+export PATH=`echo $PATH | tr ':' '\n' | sort -u | paste -d: -s -`;
+
+
+-----------------------------------------
+【rvmに関するエラー】
+ $ rvm version
+
+ Warning! PATH is not properly set up, '$HOME/.rvm/gems/ruby-2.0.0-p247/bin' is not at first place,
+
+ usually this is caused by shell initialization files - check them for 'PATH=...' entries,
+ to fix run: 'rvm use ruby-2.0.0-p247'.
+
+とでた…
+のでとりあえず
+
+rvm use 2.1.2
+
+で解決した．
+
+---------------------------------------------
+【エラー画面を見やすくする？】
+
+ $ gem install better_erros
+ $ gem install binding_of_caller
+ $ gem install pry-byebug
+
+【Gemfileに追加】
+#/Gemfile
+group :test, :development do
+ gem 'better_errors'
+ gem 'binding_of_caller"
+ gem 'pry-byebug'
+end
+
+----------------------------------
+
+
+
+

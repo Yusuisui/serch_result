@@ -1,0 +1,79 @@
+2014/05/21 VMware・ubuntu・heroku・rails・git
+作成者：宇野
+
+********************************************
+【VMware】
+・VMware-player-6.0.2-1744117.exe
+
+
+
+
+
+
+【ubuntu】
+・ubuntu-ja-14.04-desktop-amd64.iso
+
+*********************************************
+【Heroku】
+【コマンド】
+
+・heroku list
+　登録しているアプリ一覧
+
+・rails new アプリ名
+　カレントにアプリを作成する．
+
+・rails s
+  サーバーを動かす．Ctrl+ｃで終了
+　ブラウザより　http://localhost:3000/　で
+　Welcome aboard　が出ていれば成功
+
+・heroku create リポジトリ名
+　アプリケーションの追加(ユニークかつ英語と数字のみ？)
+
+・heroku open
+　作成したアプリをブラウザで開くことができる．
+　現在いるカレントのアプリ？
+
+・
+
+
+******************************************
+【git】
+【コマンド】
+
+・git init 
+
+・git add
+
+・git commit
+
+・git push
+
+
+
+
+
+
+・git remote
+　リモートリポジトリの名前の一覧を表示
+　-v をつけると詳細を表示
+
+・git remote add <remote-name> <url>
+　リモートリポジトリの追加
+　remote-name:リモートリポジトリの名前(任意)
+　url:リポジトリのURL
+
+・git remote rename <old-name> <new-name>
+　リモートリポジトリをリネームする
+　old-name:現在のリモートリポジトリ名
+　new-name:新しくつけるリモートリポジトリ名(任意)
+
+・git remote rm <remote-name>
+　リモートリポジトリを削除する
+　remote-name:削除したいリモートリポジトリ名
+
+・git remote show <remote-name>
+　リモートリポジトリの情報を見る
+　remote-name:情報を見たいリモートリポジトリ名
+
